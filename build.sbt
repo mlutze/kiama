@@ -2,6 +2,10 @@ import sbtcrossproject.CrossProject
 
 enablePlugins(ScalaJSPlugin)
 
+ThisBuild / organization := "org.me"
+ThisBuild / version      := "0.1-SNAPSHOT"
+scalaVersion := "3.3.1"
+
 lazy val replDependencies = Seq(
   "jline" % "jline" % "2.14.6",
   "org.rogach" %% "scallop" % "4.1.0",
@@ -25,11 +29,9 @@ lazy val kiama: CrossProject = crossProject(JSPlatform, JVMPlatform).in(file("."
       "-language:higherKinds",
       "-language:implicitConversions"
     ),
-    publish := {},
-    publishLocal := {}
   ))
   .settings(
-    name := "kiama"
+    name := "kiama",
   )
   .jvmSettings(
     libraryDependencies ++= (replDependencies ++ lspDependencies)
